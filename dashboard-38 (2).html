@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>38:00 — 15 de novembro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;--black:#111113;--g1:#F6F6F8;--g2:#E9E9ED;--g3:#86868B;--g4:#C2C2C8;
+  --blue:#0066FF;--green:#34C759;
+  --sh:0 1px 2px rgba(0,0,0,.03),0 8px 26px rgba(0,0,0,.05);
+  --r:18px;--tab:62px;
+  --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--white);color:var(--black);
+  font-family:'Inter',-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;
+  font-size:17px;line-height:1.6;letter-spacing:-.011em;-webkit-font-smoothing:antialiased;
+  padding-bottom:calc(var(--tab) + var(--sab) + 20px);overflow-x:hidden;
+}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:'tnum' 1}
+p,li,span,div,h1,h2,h3{overflow-wrap:anywhere;hyphens:none}
+.wrap{width:100%;max-width:640px;margin:0 auto;padding:0 20px}
+h1{font-size:clamp(34px,10vw,60px);font-weight:800;line-height:1.02;letter-spacing:-.038em}
+h2{font-size:clamp(26px,7vw,40px);font-weight:700;line-height:1.1;letter-spacing:-.03em}
+h3{font-size:21px;font-weight:600;line-height:1.28;letter-spacing:-.02em}
+.eye{font-size:12px;font-weight:600;color:var(--g3)}
+.lede{font-size:17px;line-height:1.55;color:var(--g3)}
+.small{font-size:15px;line-height:1.6;color:var(--g3)}
+.disc{font-size:13.5px;line-height:1.6;color:var(--g4);margin-top:24px}
+section{padding:54px 0;scroll-margin-top:12px}
+section.alt{background:var(--g1)}
+.shead{text-align:center;margin-bottom:26px}
+
+/* NAV */
+.topnav{display:none}
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:80;
+  height:calc(var(--tab) + var(--sab));padding-bottom:var(--sab);
+  background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(24px);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);border-top:1px solid rgba(0,0,0,.07);display:flex;
+}
+.tabbar button{
+  flex:1;background:none;border:0;font-family:inherit;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  color:var(--g3);transition:color .25s;min-width:0;
+}
+.tabbar svg{width:21px;height:21px}
+.tabbar svg *{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tabbar span{font-size:11px;font-weight:500;white-space:nowrap}
+.tabbar button.act{color:var(--blue)}
+.tabbar button:active{opacity:.55}
+
+/* HOJE */
+.hoje{padding:calc(var(--sat) + 34px) 0 46px}
+.hoje .cd{font-size:12px;font-weight:600;color:var(--g3);text-align:center}
+.hoje h1{text-align:center;margin:12px 0 6px}
+.hoje .sub{text-align:center;font-size:15px;color:var(--g3);margin-bottom:30px}
+.today{background:var(--white);border-radius:22px;box-shadow:var(--sh);padding:26px 22px;text-align:left}
+.today .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;
+  padding:5px 11px;border-radius:999px;background:var(--g1);color:var(--g3);margin-bottom:14px}
+.today .tag.hard{background:#EBF2FF;color:var(--blue)}
+.today .tag.rest{background:#F1F5F0;color:#4C7A52}
+.today h3{font-size:25px;line-height:1.2;margin-bottom:4px}
+.today .when{font-size:15px;color:var(--g3);margin-bottom:20px}
+.tnums{display:flex;gap:10px;margin-bottom:20px}
+.tnum{flex:1;background:var(--g1);border-radius:13px;padding:13px 8px;text-align:center;min-width:0}
+.tnum b{display:block;font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.tnum span{display:block;font-size:11px;color:var(--g3);margin-top:3px}
+.focus{border-top:1px solid var(--g2);padding-top:18px}
+.focus .fk{font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--blue);margin-bottom:7px}
+.focus .fv{font-size:18px;line-height:1.45;font-weight:500;letter-spacing:-.015em}
+.btn{display:block;width:100%;padding:16px;border-radius:999px;font-size:16px;font-weight:500;
+  border:0;cursor:pointer;font-family:inherit;text-align:center;min-height:52px;margin-top:20px;
+  background:var(--blue);color:#fff;transition:transform .2s}
+.btn:active{transform:scale(.98)}
+.btn.done{background:var(--g1);color:var(--green);font-weight:600}
+
+/* SEMANA */
+.weeks{display:flex;gap:4px;align-items:flex-end;height:72px;margin-bottom:24px;
+  overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.weeks::-webkit-scrollbar{display:none}
+.wbtn{flex:0 0 auto;width:calc((100% - 56px)/15);min-width:15px;background:none;border:0;padding:0;
+  cursor:pointer;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+  font-family:inherit;position:relative}
+.wbtn .bar{width:100%;background:var(--g2);border-radius:3px 3px 0 0;transition:background .4s}
+.wbtn .n{font-size:10px;color:var(--g4);margin-top:6px;font-weight:500}
+.wbtn.on .bar{background:var(--black)}
+.wbtn.on .n{color:var(--black);font-weight:700}
+.wbtn.dn::after{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--green)}
+.whead{text-align:center;margin-bottom:22px}
+.whead h3{margin:6px 0 8px}
+.wstats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.wstat{flex:1 1 30%;background:var(--g1);border-radius:13px;padding:12px 6px;text-align:center;min-width:0}
+.wstat .v{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.wstat .k{font-size:11px;color:var(--g3);margin-top:2px;line-height:1.25}
+
+/* CARTÃO */
+.card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:10px;overflow:hidden}
+.card.done{background:#F7FBF8}
+.card.today{box-shadow:0 0 0 2px var(--blue),var(--sh)}
+.chd{width:100%;background:none;border:0;font-family:inherit;color:inherit;text-align:left;
+  cursor:pointer;padding:17px 18px;display:block}
+.chd .r1{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px}
+.chd .dw{font-size:12.5px;font-weight:600;color:var(--g3)}
+.chd .dt{font-size:12.5px;color:var(--g4)}
+.chd .sp{flex:1}
+.chd .hr{font-size:13px;font-weight:600;color:var(--blue)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--g2);flex-shrink:0}
+.dot.i1{background:var(--g4)}.dot.i2{background:#9A9AA0}.dot.i3{background:var(--black)}.dot.i4{background:var(--blue)}
+.card.done .dot{background:var(--green)}
+.chd .tt{font-size:18px;font-weight:600;letter-spacing:-.018em;line-height:1.3;display:block}
+.chd .mt{font-size:14px;color:var(--g3);margin-top:5px;display:flex;flex-wrap:wrap;gap:3px 14px;line-height:1.4}
+.chd .r3{display:flex;align-items:center;gap:9px;margin-top:9px}
+.chev{margin-left:auto;width:9px;height:9px;border-right:1.6px solid var(--g4);
+  border-bottom:1.6px solid var(--g4);transform:rotate(45deg);transition:transform .35s}
+.card.open .chev{transform:rotate(225deg)}
+.cbd{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.8,.2,1)}
+.card.open .cbd{max-height:2400px}
+.cin{padding:0 18px 20px}
+.steps{list-style:none}
+.steps li{padding:11px 0;border-top:1px solid var(--g2);font-size:15.5px;line-height:1.55;color:#3A3A3E}
+.steps li b{color:var(--black);font-weight:600}
+.tip{margin-top:15px;padding:15px 17px;background:var(--g1);border-radius:13px;
+  font-size:14.5px;line-height:1.6;color:#48484C}
+.tip b{color:var(--black)}
+.card.done .tip{background:#EEF6F0}
+
+/* FORM */
+.form{margin-top:20px;padding-top:18px;border-top:1px solid var(--g2)}
+.fl{font-size:11.5px;font-weight:700;letter-spacing:.05em;color:var(--g3);margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label.f{display:block;min-width:0}
+label.f span{display:block;font-size:12px;color:var(--g3);margin-bottom:5px}
+input{width:100%;background:var(--g1);border:1.5px solid transparent;border-radius:12px;
+  padding:13px 14px;font-family:inherit;font-size:16px;color:var(--black);min-height:48px;
+  transition:background .25s,border-color .25s}
+input:focus{outline:none;background:#fff;border-color:var(--blue)}
+.fbtns{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:16px}
+.mini{padding:13px 22px;font-size:15px;border-radius:999px;border:0;cursor:pointer;
+  font-family:inherit;font-weight:500;min-height:46px;transition:transform .2s}
+.mini:active{transform:scale(.97)}
+.mini.p{background:var(--black);color:#fff}
+.mini.s{background:var(--g1);color:var(--g3)}
+.mini.d{background:transparent;color:#FF3B30;border:1px solid #FFD5D2}
+.ok{font-size:13.5px;color:var(--green);font-weight:500;opacity:0;transition:opacity .35s}
+.ok.on{opacity:1}
+
+/* PROJEÇÃO */
+.proj{text-align:center}
+.proj .t{font-size:clamp(72px,25vw,140px);font-weight:800;letter-spacing:-.05em;line-height:.88;margin-top:12px}
+.proj .p{font-size:18px;color:var(--g3);margin-top:12px}
+.meter{margin-top:32px}
+.meter .lb{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--g3);margin-bottom:9px}
+.meter .tr{height:4px;background:var(--g2);border-radius:99px;overflow:hidden}
+.meter .fl2{height:100%;background:var(--black);border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.why{margin-top:24px;font-size:15px;color:var(--g3);line-height:1.6;text-align:left;
+  background:#fff;padding:18px 20px;border-radius:14px;box-shadow:var(--sh)}
+.rows{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:2px 18px;margin-top:14px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:14px 0;border-bottom:1px solid var(--g2)}
+.row:last-child{border-bottom:0}
+.row .a{font-size:16px;font-weight:500;min-width:0}
+.row .b{font-size:15px;color:var(--g3);text-align:right;flex-shrink:0}
+.row .b.k{color:var(--black);font-weight:600}
+.panel{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:22px 18px;margin-top:14px}
+.dstat{display:flex;gap:9px;margin-bottom:16px}
+.dstat div{flex:1;background:var(--g1);border-radius:12px;padding:12px 8px;text-align:center;min-width:0}
+.dstat b{display:block;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.dstat span{font-size:11px;color:var(--g3);display:block;margin-top:2px;line-height:1.2}
+#imp{display:none;margin-top:12px}
+#impJson{width:100%;min-height:80px;background:var(--g1);border:1.5px solid transparent;
+  border-radius:12px;padding:12px;font-family:inherit;font-size:14px;resize:vertical}
+
+/* RAIO */
+.zap{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;overflow:hidden}
+.zap.on{display:flex}
+.zap .bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,
+  rgba(255,234,0,.95) 0%,rgba(255,214,10,.9) 22%,rgba(255,193,7,.75) 42%,rgba(255,255,255,.96) 72%);
+  animation:zbg 1.6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes zbg{0%{opacity:0;transform:scale(.4)}18%{opacity:1;transform:scale(1)}72%{opacity:1}100%{opacity:0;transform:scale(1.15)}}
+.zap .bolt{position:relative;font-size:22px;line-height:1;animation:zbolt 1.6s cubic-bezier(.16,1,.3,1) forwards;
+  filter:drop-shadow(0 12px 34px rgba(180,120,0,.45))}
+@keyframes zbolt{
+  0%{transform:scale(.15) rotate(-14deg);opacity:0}
+  14%{opacity:1}
+  46%{transform:scale(11) rotate(4deg);opacity:1}
+  62%{transform:scale(10) rotate(0deg)}
+  100%{transform:scale(17) rotate(2deg);opacity:0}}
+.zray{position:absolute;left:50%;top:50%;width:3px;height:150px;border-radius:99px;
+  background:linear-gradient(180deg,rgba(255,214,10,0),#FFD60A);transform-origin:50% 0;opacity:0;
+  animation:zray 1.5s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes zray{0%{opacity:0;transform:rotate(var(--a)) translateY(0) scaleY(.15)}
+  30%{opacity:.95}100%{opacity:0;transform:rotate(var(--a)) translateY(var(--d)) scaleY(1.5)}}
+.zlab{position:absolute;bottom:22%;left:0;right:0;text-align:center;font-size:14px;font-weight:800;
+  letter-spacing:.24em;color:#7A5A00;opacity:0;animation:zlab 1.6s ease forwards}
+@keyframes zlab{0%,22%{opacity:0}40%,72%{opacity:1}100%{opacity:0}}
+
+.rv{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+
+@media(min-width:768px){
+  body{font-size:18px;padding-bottom:0}
+  .wrap{max-width:780px;padding:0 36px}
+  section{padding:88px 0;scroll-margin-top:60px}
+  .tabbar{display:none}
+  .topnav{display:block;position:sticky;top:0;z-index:80;background:rgba(255,255,255,.78);
+    backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(0,0,0,.06)}
+  .topnav .in{max-width:780px;margin:0 auto;padding:0 36px;height:54px;display:flex;
+    align-items:center;justify-content:space-between}
+  .topnav .mk{font-size:16px;font-weight:700;letter-spacing:-.02em}
+  .topnav .lk{display:flex;gap:26px}
+  .topnav a{color:var(--g3);text-decoration:none;font-size:14.5px;font-weight:500;cursor:pointer;transition:color .25s}
+  .topnav a:hover,.topnav a.act{color:var(--black)}
+  .hoje{padding:70px 0 60px}
+  .today{padding:34px 30px}
+  .btn{max-width:300px;margin-left:auto;margin-right:auto}
+  .grid2{grid-template-columns:repeat(4,1fr)}
+  .chd,.cin{padding-left:24px;padding-right:24px}
+  .weeks{height:88px}
+}
+</style>
+
+<nav class="topnav">
+  <div class="in">
+    <span class="mk">38:00</span>
+    <div class="lk">
+      <a data-to="hoje">Hoje</a>
+      <a data-to="semana">Semana</a>
+      <a data-to="projecao">Projeção</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hoje" id="hoje">
+  <div class="wrap">
+    <div class="cd rv" id="cd">—</div>
+    <h1 class="rv">Hoje</h1>
+    <div class="sub rv" id="todayDate">—</div>
+    <div class="today rv" id="todayCard"></div>
+  </div>
+</section>
+
+<section class="alt" id="semana">
+  <div class="wrap">
+    <div class="weeks rv" id="weeks"></div>
+    <div class="whead rv" id="whead"></div>
+    <div id="days"></div>
+  </div>
+</section>
+
+<section id="projecao">
+  <div class="wrap proj">
+    <div class="eye rv">Projeção da prova</div>
+    <div class="t num rv" id="pT">42:00</div>
+    <div class="p num rv" id="pP">4:12 por quilômetro</div>
+    <div class="meter rv">
+      <div class="lb"><span>Confiança</span><span class="num" id="cN">18%</span></div>
+      <div class="tr"><div class="fl2" id="cF" style="width:18%"></div></div>
+    </div>
+    <p class="why rv" id="pW">Registre os treinos e a projeção se ajusta.</p>
+
+    <div class="rows rv">
+      <div class="row"><span class="a">Meta</span><span class="b k num">38:00 · 3:48/km</span></div>
+      <div class="row"><span class="a">Ponto de partida</span><span class="b num">42:00 · VDOT 49</span></div>
+      <div class="row"><span class="a">Marco da Semana 10</span><span class="b k num">5 km em 18:45–19:05</span></div>
+      <div class="row"><span class="a">Limiar · base</span><span class="b num">4:18/km</span></div>
+      <div class="row"><span class="a">Limiar · final</span><span class="b num k">4:00/km</span></div>
+      <div class="row"><span class="a">VO₂max · final</span><span class="b num k">3:40/km</span></div>
+      <div class="row"><span class="a">FC limiar</span><span class="b num">163–173 bpm</span></div>
+      <div class="row"><span class="a">FC VO₂max</span><span class="b num">173–188 bpm</span></div>
+    </div>
+
+    <div class="panel rv">
+      <div class="fl">SEUS DADOS</div>
+      <div class="dstat">
+        <div><b id="dsT">0</b><span>treinos</span></div>
+        <div><b id="dsK">0</b><span>km feitos</span></div>
+        <div><b id="dsS">—</b><span>semana</span></div>
+      </div>
+      <p class="small" style="margin-bottom:14px">Salvo neste navegador. Exporte para levar a outro aparelho.</p>
+      <div class="fbtns">
+        <button class="mini p" id="btnExp">Exportar</button>
+        <button class="mini s" id="btnImp">Importar</button>
+        <button class="mini d" id="btnDel">Apagar</button>
+        <span class="ok" id="dOk">Pronto</span>
+      </div>
+      <div id="imp">
+        <textarea id="impJson" placeholder="Cole aqui o backup em JSON"></textarea>
+        <div class="fbtns"><button class="mini p" id="btnImpOk">Confirmar</button></div>
+      </div>
+    </div>
+    <p class="disc rv">A projeção parte de VDOT 49 e se move conforme a adesão às sessões-chave e os ritmos que você registra. O teste de 5 km da Semana 10 recalibra tudo.</p>
+  </div>
+</section>
+
+<div class="tabbar">
+  <button data-to="hoje"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Hoje</span></button>
+  <button data-to="semana"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><span>Semana</span></button>
+  <button data-to="projecao"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-6M22 19H2"/></svg><span>Projeção</span></button>
+</div>
+
+<div class="zap" id="zap" aria-hidden="true">
+  <div class="bg"></div>
+  <div class="bolt">⚡</div>
+  <div class="zlab">TREINO FEITO</div>
+</div>
+
+<script>
+const START=new Date(2026,7,3), RACE=new Date(2026,10,15);
+const DOW=['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'];
+const DOWS=['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+
+/* t: r corrida · x descanso | i: intensidade 1-4 | key: sessão-chave | tp: pace alvo (s/km) */
+const P=[
+
+{n:1,b:1,bl:'Reintegração',vol:16,fad:'Decrescente',
+ obj:'Sete dias após a maratona. Reintroduzir impacto na menor dose possível, sem nenhum objetivo cardiovascular.',d:[
+ {t:'x',ti:'Descanso total',foco:'Não corra. O tecido conjuntivo ainda está em reparo.'},
+ {t:'r',i:1,ti:'Caminhada de reativação',k:3.5,p:'sem ritmo',fc:'livre',R:2,h:'05:30',dur:'40 min',
+  det:['<b>Único bloco</b> 40 min de caminhada em ritmo confortável','Sem cronômetro, sem meta de pace'],
+  foco:'Se houver febre, dor no corpo ou tosse profunda, não saia de casa. Sintomas só acima do pescoço liberam caminhar.'},
+ {t:'x',ti:'Descanso total',foco:'Segundo dia sem impacto. Isso é parte do plano, não uma falha.'},
+ {t:'r',i:1,ti:'Primeira corrida pós-maratona',k:5,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'45 min',
+  det:['<b>Aquecimento</b> 8 min de caminhada','<b>Principal</b> 5 km contínuos a 6:05–6:35/km, FC abaixo de 132 bpm','<b>Desaquecimento</b> 5 min de caminhada'],
+  foco:'Teste diagnóstico. Qualquer dor pontual acima de 3 em 10 encerra o treino ali mesmo.'},
+ {t:'x',ti:'Descanso total',foco:'Recuperação entre as duas únicas corridas da semana.'},
+ {t:'r',i:1,ti:'Corrida contínua',k:7,p:'6:00–6:30',fc:'abaixo de 132',R:3,h:'06:00',dur:'55 min',key:1,
+  det:['<b>Aquecimento</b> 8 min de caminhada','<b>Principal</b> 7 km contínuos a 6:00–6:30/km','<b>Desaquecimento</b> 5 min de caminhada'],
+  foco:'Este é o longão da semana. Sete quilômetros é o teto correto sete dias depois de uma maratona.'},
+ {t:'x',ti:'Descanso total',foco:'Feche a semana em 16 km. É pouco de propósito.'}]},
+
+{n:2,b:1,bl:'Reintegração',vol:36,fad:'Baixa',
+ obj:'Restabelecer cinco corridas por semana em intensidade baixa e reintroduzir o estímulo neuromuscular com strides.',d:[
+ {t:'x',ti:'Descanso total',foco:'Segunda é descanso em todo o bloco de reintegração.'},
+ {t:'r',i:1,ti:'Rodagem fácil',k:8,p:'5:40–6:00',fc:'132–145',R:4,h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos: skipping baixo, anfersen, passada elevada, dribbling, 2×20 m cada','<b>Principal</b> 8 km a 5:40–6:00/km','<b>Desaquecimento</b> 5 min de caminhada'],
+  foco:'Cadência de 172 a 178 passos por minuto. Passada curta e frequente é o que protege a panturrilha nesta fase.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:9,p:'5:40–6:00',fc:'132–148',R:4,h:'05:30',dur:'60 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 8 km a 5:40–6:00/km','<b>Strides</b> 6×20 s em aceleração progressiva até cerca de 3:30/km nos 5 s finais, com 90 s de caminhada entre','<b>Desaquecimento</b> 1 km de trote'],
+  foco:'Strides são esforço controlado, nunca tiro. Você deve terminar cada um sentindo que poderia repetir na hora.'},
+ {t:'r',i:1,ti:'Regenerativo',k:6,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'40 min',
+  det:['<b>Único bloco</b> 6 km a 6:05–6:35/km, FC abaixo de 132 bpm'],
+  foco:'Se bater vontade de acelerar, você está errando o treino. O regenerativo existe para acelerar a remoção metabólica.'},
+ {t:'x',ti:'Descanso total',foco:'Véspera do longão. Perna leve amanhã.'},
+ {t:'r',i:2,ti:'Longão contínuo',k:13,p:'5:30–5:50',fc:'135–148',R:4,h:'05:30',dur:'1h15',key:1,
+  det:['<b>Aquecimento</b> 1 km de caminhada e trote','<b>Principal</b> 13 km contínuos a 5:30–5:50/km','<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Percurso plano. Critério de sucesso: terminar sentindo que poderia fazer mais cinco quilômetros.'},
+ {t:'x',ti:'Descanso total',foco:'36 km na semana. A frequência de cinco corridas está restabelecida.'}]},
+
+{n:3,b:2,bl:'Base',vol:52,fad:'Baixa a moderada',
+ obj:'Primeira sessão de limiar verdadeiro em três meses. A faixa de 163 a 173 bpm estava completamente ausente do seu treinamento.',d:[
+ {t:'x',ti:'Descanso total',foco:'Descanso antes do primeiro bloco de qualidade real.'},
+ {t:'r',i:1,ti:'Rodagem com educativos',k:10,p:'5:25–5:50',fc:'132–148',R:4,h:'05:30',dur:'1h',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos completos','<b>Principal</b> 10 km a 5:25–5:50/km','<b>Desaquecimento</b> 5 min de caminhada'],
+  foco:'Véspera de pista. Nada além de rodagem hoje, mesmo que as pernas peçam.'},
+ {t:'r',i:3,ti:'Pista · limiar 3×8 min',k:11,p:'4:18',fc:'160–170',R:7,h:'05:30',dur:'1h',key:1,tp:258,
+  det:['<b>Aquecimento</b> 2,5 km progressivo de 6:00 para 5:20, educativos e 4×20 s strides',
+       '<b>Principal</b> 3×8 min a 4:18/km, cerca de 1850 m por repetição',
+       '<b>Recuperação</b> 2 min de trote muito leve entre as repetições, sem parar',
+       '<b>Desaquecimento</b> 1,5 km de trote a 6:00 e 5 min de caminhada'],
+  foco:'A primeira repetição vai parecer fácil demais. Não acelere: a terceira é quem diz a verdade sobre o ritmo.'},
+ {t:'r',i:1,ti:'Regenerativo',k:7,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'45 min',
+  det:['<b>Único bloco</b> 7 km a 6:05–6:35/km'],
+  foco:'Dia seguinte à pista. Fluxo sanguíneo e nada mais.'},
+ {t:'r',i:1,ti:'Rodagem fácil',k:8,p:'5:25–5:50',fc:'132–148',R:4,h:'05:30',dur:'50 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 8 km a 5:25–5:50/km'],
+  foco:'Véspera de longão. Termine com sensação de sobra.'},
+ {t:'r',i:2,ti:'Longão com final progressivo',k:16,p:'5:30 → 4:48',fc:'135 → 158',R:'4 → 6',h:'05:30',dur:'1h30',key:1,
+  det:['<b>Aquecimento</b> 1 km de caminhada e trote',
+       '<b>Bloco 1</b> 12 km a 5:30–5:45/km',
+       '<b>Bloco 2</b> 3 km progressivos: 5:08 · 4:58 · 4:48',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'O final progressivo recruta fibras rápidas com glicogênio parcialmente depletado. O último quilômetro termina em RPE 6, nunca 8.'},
+ {t:'x',ti:'Descanso total',foco:'48 km. O limiar voltou ao seu treinamento.'}]},
+
+{n:4,b:2,bl:'Base',vol:54,fad:'Moderada',
+ obj:'Aumentar em um terço o volume de limiar e introduzir o fartlek como estímulo autorregulado.',d:[
+ {t:'x',ti:'Descanso total',foco:'Semana de aumento de carga. O descanso de segunda protege a pista de quarta.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:11,p:'5:25–5:50',fc:'132–148',R:4,h:'05:30',dur:'1h05',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 10 km a 5:25–5:50/km','<b>Strides</b> 6×20 s com 90 s de caminhada entre'],
+  foco:'Os strides mantêm a rigidez tendínea sem custo metabólico. Não conte como treino de qualidade.'},
+ {t:'r',i:3,ti:'Pista · limiar 4×8 min',k:12,p:'4:18',fc:'160–170',R:7,h:'05:30',dur:'1h05',key:1,tp:258,
+  det:['<b>Aquecimento</b> 2,5 km progressivo, educativos e 4 strides',
+       '<b>Principal</b> 4×8 min a 4:18/km',
+       '<b>Recuperação</b> 2 min de trote entre as repetições',
+       '<b>Desaquecimento</b> 1,5 km de trote'],
+  foco:'32 min em zona contra 24 na semana passada. Se precisar reduzir, tire 3 a 5 s do ritmo — nunca corte uma repetição.'},
+ {t:'r',i:1,ti:'Regenerativo',k:7,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'45 min',
+  det:['<b>Único bloco</b> 7 km a 6:05–6:35/km'],
+  foco:'Recuperação obrigatória entre os dois dias duros da semana.'},
+ {t:'r',i:2,ti:'Fartlek 2 por 2',k:9,p:'4:12–4:22 nos fortes',fc:'155–168 nos fortes',R:'5–7',h:'05:30',dur:'50 min',
+  det:['<b>Aquecimento</b> 2 km a 5:40/km e educativos',
+       '<b>Principal</b> 6 km alternando 2 min forte a RPE 7 e 2 min fácil',
+       '<b>Referência</b> use pontos do terreno, não o cronômetro',
+       '<b>Desaquecimento</b> 1 km de trote'],
+  foco:'Não pode virar o segundo treino duro da semana. Se ao final não conseguiria fazer mais 6 km, foi forte demais.'},
+ {t:'r',i:3,ti:'Longão com blocos de limiar',k:17,p:'4:22 nos blocos',fc:'160–170 nos blocos',R:'4 → 7',h:'05:30',dur:'1h35',key:1,tp:262,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 5 km a 5:30/km',
+       '<b>Principal</b> 3× (2 km a 4:22/km / 1 km a 5:30/km)',
+       '<b>Volta à calma</b> 3 km a 5:30/km',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Esta é a sessão-assinatura do seu treinador, blocos dentro do longão, transposta do ritmo de maratona para o limiar.'},
+ {t:'x',ti:'Descanso total',foco:'54 km. Segunda semana consecutiva de aumento.'}]},
+
+{n:5,b:2,bl:'Base',vol:60,fad:'Moderada a alta',
+ obj:'Pico do bloco base. Maior volume de limiar do bloco e primeira ponte para velocidade acima do limiar.',d:[
+ {t:'x',ti:'Descanso total',foco:'Semana mais dura do bloco base. Chegue à quarta inteiro.'},
+ {t:'r',i:1,ti:'Rodagem com educativos',k:12,p:'5:25–5:50',fc:'132–148',R:4,h:'05:30',dur:'1h10',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 12 km a 5:25–5:50/km'],
+  foco:'Maior rodagem fácil até aqui. Mantenha a FC abaixo de 148 mesmo que o ritmo caia.'},
+ {t:'r',i:3,ti:'Pista · 2×12 min e 4×1 min',k:13,p:'4:16 e 3:50',fc:'163–173 e 175+',R:7,h:'05:30',dur:'1h10',key:1,tp:256,
+  det:['<b>Aquecimento</b> 3 km progressivo, educativos e 4 strides',
+       '<b>Bloco A</b> 2×12 min a 4:16/km, recuperação de 3 min em trote',
+       '<b>Bloco B</b> 4×1 min a 3:50/km, recuperação de 1 min em trote',
+       '<b>Desaquecimento</b> 1,5 km de trote'],
+  foco:'Os 4×1 min são a ponte para o bloco de VO₂max. Rápido mas relaxado: ombros baixos e mãos soltas.'},
+ {t:'r',i:1,ti:'Regenerativo',k:7,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'45 min',
+  det:['<b>Único bloco</b> 7 km a 6:05–6:35/km'],
+  foco:'Semana de pico. Este dia vale mais que qualquer quilômetro extra.'},
+ {t:'r',i:2,ti:'Rodagem com 8 strides',k:9,p:'5:25–5:50',fc:'132–148',R:4,h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 8 km a 5:25–5:50/km','<b>Strides</b> 8×20 s com 90 s de caminhada entre'],
+  foco:'Véspera do treino mais exigente do bloco. Strides sim, esforço não.'},
+ {t:'r',i:3,ti:'Longão · 8 km de limiar',k:19,p:'4:20 nos blocos',fc:'160–170 nos blocos',R:'4 → 7',h:'05:30',dur:'1h45',key:1,tp:260,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 5 km a 5:30/km',
+       '<b>Principal</b> 4× (2 km a 4:20/km / 1 km a 5:30/km)',
+       '<b>Volta à calma</b> 2 km a 5:30/km',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Jantar reforçado na véspera e 30 g de carboidrato aos 50 min de treino. Sem isso, os dois últimos blocos desandam.'},
+ {t:'x',ti:'Descanso total',foco:'60 km, pico do bloco base. A descarga vem agora.'}]},
+
+{n:6,b:2,bl:'Descarga',vol:46,fad:'Decrescente',
+ obj:'Supercompensação. Corta-se volume, nunca intensidade — o princípio que o seu próprio treinador aplica.',d:[
+ {t:'x',ti:'Descanso total',foco:'Semana de descarga. Você deve terminá-la com vontade de correr rápido.'},
+ {t:'r',i:1,ti:'Rodagem fácil',k:10,p:'5:25–5:50',fc:'132–148',R:4,h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 10 km a 5:25–5:50/km'],
+  foco:'Descarga não é folga. É volume menor na mesma qualidade de execução.'},
+ {t:'r',i:3,ti:'Pista · 2×6 min e strides',k:9,p:'4:14',fc:'163–173',R:7,h:'05:30',dur:'50 min',key:1,tp:254,
+  det:['<b>Aquecimento</b> 2,5 km progressivo, educativos e 4 strides',
+       '<b>Principal</b> 2×6 min a 4:14/km, recuperação de 2 min em trote',
+       '<b>Depois</b> 6×20 s strides',
+       '<b>Desaquecimento</b> 1,5 km de trote'],
+  foco:'Metade do volume de limiar, ritmo 4 s mais rápido. É isso que preserva a adaptação enquanto a fadiga dissipa.'},
+ {t:'r',i:1,ti:'Regenerativo',k:6,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'40 min',
+  det:['<b>Único bloco</b> 6 km a 6:05–6:35/km'],foco:'Curto e leve. Confie na descarga.'},
+ {t:'r',i:1,ti:'Rodagem fácil',k:8,p:'5:25–5:50',fc:'132–148',R:4,h:'05:30',dur:'50 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 8 km a 5:25–5:50/km'],foco:'Sem strides hoje. Absorção.'},
+ {t:'r',i:2,ti:'Longão puro',k:13,p:'5:20–5:40',fc:'135–150',R:4,h:'05:30',dur:'1h15',key:1,
+  det:['<b>Aquecimento</b> 1 km de caminhada','<b>Principal</b> 13 km contínuos a 5:20–5:40/km','<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Longão puro, sem qualidade embutida. A alternância entre longão de qualidade e longão puro é uma das melhores práticas do seu treinador.'},
+ {t:'x',ti:'Descanso total',foco:'Se as pernas não estiverem leves ao fim desta semana, a descarga precisa ser estendida.'}]},
+
+{n:7,b:3,bl:'Desenvolvimento',vol:61,fad:'Moderada',
+ obj:'Primeira sessão de VO₂max verdadeiro. Este estímulo esteve completamente ausente do seu histórico e é o maior determinante da performance nos 10 km.',d:[
+ {t:'r',i:1,ti:'Rodagem curta',k:6,p:'5:30–5:55',fc:'132–145',R:3,h:'05:30',dur:'35 min',
+  det:['<b>Único bloco</b> 6 km bem leves a 5:30–5:55/km'],
+  foco:'A sexta corrida da semana entra aqui. Existe para somar volume aeróbico com o menor dano por sessão possível.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:11,p:'5:20–5:45',fc:'132–148',R:4,h:'05:30',dur:'1h05',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 10 km a 5:20–5:45/km','<b>Strides</b> 6×20 s'],
+  foco:'Véspera do primeiro VO₂max em meses. Nada de acelerar hoje.'},
+ {t:'r',i:4,ti:'Pista · VO₂max 5×3 min',k:11,p:'3:56',fc:'175–185',R:9,h:'05:30',dur:'1h10',key:1,tp:236,
+  det:['<b>Aquecimento inegociável</b> 3 km progressivo de 6:00 para 5:15, educativos completos, 6×20 s strides e 3 min de caminhada',
+       '<b>Principal</b> 5×3 min a 3:56/km, cerca de 750 m por repetição',
+       '<b>Recuperação</b> 2:30 em trote leve, sem parar e sem caminhar',
+       '<b>Desaquecimento</b> 2 km de trote a 6:00 e alongamento de panturrilha e sóleo'],
+  foco:'Repetições de 3 min são o mínimo eficaz: a cinética de oxigênio leva de 60 a 90 s só para chegar na zona. Se a variação entre a primeira e a quinta passar de 5 s/km, o ritmo estava errado.'},
+ {t:'r',i:1,ti:'Regenerativo',k:7,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'45 min',
+  det:['<b>Único bloco</b> 7 km a 6:05–6:35/km'],
+  foco:'Panturrilha e Aquiles acabaram de levar carga nova. Hoje é proteção.'},
+ {t:'r',i:1,ti:'Rodagem fácil',k:9,p:'5:20–5:45',fc:'132–148',R:4,h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 9 km a 5:20–5:45/km'],
+  foco:'Sem strides hoje. Segundo dia de proteção após a estreia do VO₂max.'},
+ {t:'r',i:3,ti:'Longão com limiar',k:17,p:'4:16 nos blocos',fc:'163–173 nos blocos',R:'4 → 7',h:'05:30',dur:'1h35',key:1,tp:256,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 5 km a 5:25/km',
+       '<b>Principal</b> 3× (2,5 km a 4:16/km / 1 km a 5:25/km)',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'O limiar não sai de cena quando o VO₂max entra. Ele passa a sustentar o novo estímulo.'},
+ {t:'x',ti:'Descanso total',foco:'61 km e o VO₂max finalmente no plano.'}]},
+
+{n:8,b:3,bl:'Desenvolvimento',vol:65,fad:'Moderada a alta',
+ obj:'Consolidar o VO₂max com 20% mais volume em zona, acumulando cerca de 12 min acima de 90% do consumo máximo.',d:[
+ {t:'r',i:1,ti:'Rodagem curta',k:6,p:'5:30–5:55',fc:'132–145',R:3,h:'05:30',dur:'35 min',
+  det:['<b>Único bloco</b> 6 km bem leves a 5:30–5:55/km'],foco:'Volume barato. Ritmo irrelevante, FC baixa é o único critério.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:11,p:'5:20–5:45',fc:'132–148',R:4,h:'05:30',dur:'1h05',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 10 km a 5:20–5:45/km','<b>Strides</b> 6×20 s'],
+  foco:'Véspera de pista com seis repetições. Guarde tudo.'},
+ {t:'r',i:4,ti:'Pista · VO₂max 6×3 min',k:12,p:'3:54',fc:'175–185',R:9,h:'05:30',dur:'1h15',key:1,tp:234,
+  det:['<b>Aquecimento</b> 3 km progressivo, educativos completos e 6 strides',
+       '<b>Principal</b> 6×3 min a 3:54/km',
+       '<b>Recuperação</b> 2:30 em trote leve',
+       '<b>Desaquecimento</b> 2 km de trote'],
+  foco:'Se na semana passada a deriva de ritmo passou de 5 s/km, faça cinco repetições em vez de seis. Volume só conta se a qualidade se sustentar.'},
+ {t:'r',i:1,ti:'Regenerativo',k:8,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'50 min',
+  det:['<b>Único bloco</b> 8 km a 6:05–6:35/km'],foco:'Dia seguinte à maior sessão de VO₂max até aqui.'},
+ {t:'r',i:2,ti:'Fartlek 3 por 2',k:10,p:'RPE 7 nos fortes',fc:'158–170 nos fortes',R:'5–7',h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 2 km e educativos',
+       '<b>Principal</b> 6 km alternando 3 min forte a RPE 7 e 2 min fácil',
+       '<b>Desaquecimento</b> 1,5 km de trote'],
+  foco:'Fartlek existe para dar qualidade em dia de fadiga acumulada, porque você ajusta pela sensação e não por um número.'},
+ {t:'r',i:3,ti:'Longão com blocos alternados',k:19,p:'4:16 e 4:05',fc:'163–173 e 168–176',R:'4 → 7',h:'05:30',dur:'1h45',key:1,tp:250,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 4 km a 5:25/km',
+       '<b>Principal</b> 2× [ 2 km a 4:16 · 1 km a 5:25 · 1 km a 4:05 · 1 km a 5:25 ]',
+       '<b>Volta à calma</b> 2 km a 5:25/km',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'O quilômetro a 4:05 vem depois dos dois a 4:16 de propósito. Acelerar cansado é a habilidade que ganha os últimos dois quilômetros da prova.'},
+ {t:'x',ti:'Descanso total',foco:'65 km. Uma semana antes do pico absoluto.'}]},
+
+{n:9,b:3,bl:'Pico de carga',vol:66,fad:'Alta — é esperado sentir-se pesado',
+ obj:'Máximo estímulo combinado de VO₂max e limiar. A semana mais dura de todo o plano.',d:[
+ {t:'r',i:1,ti:'Rodagem curta',k:6,p:'5:30–5:55',fc:'132–145',R:3,h:'05:30',dur:'35 min',
+  det:['<b>Único bloco</b> 6 km bem leves a 5:30–5:55/km'],foco:'Semana de pico. Cada corrida fácil precisa ser fácil de verdade.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:11,p:'5:20–5:45',fc:'132–148',R:4,h:'05:30',dur:'1h05',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 10 km a 5:20–5:45/km','<b>Strides</b> 6×20 s'],
+  foco:'Véspera da sessão mais dura do plano inteiro. Zero extras.'},
+ {t:'r',i:4,ti:'Pista · 4×4 min e 4×400 m',k:13,p:'3:54 e 3:38',fc:'178–188',R:9,h:'05:30',dur:'1h20',key:1,tp:234,
+  det:['<b>Aquecimento</b> 3 km progressivo, educativos completos e 6 strides',
+       '<b>Bloco A</b> 4×4 min a 3:54/km, recuperação de 3 min em trote',
+       '<b>Bloco B</b> 4×400 m a 3:38/km, recuperação de 90 s em trote',
+       '<b>Desaquecimento</b> 2 km de trote'],
+  foco:'Não faça esta sessão se dormiu mal ou se a FC de repouso estiver 7 bpm ou mais acima do normal. Nesse caso, troque por fartlek de 6 km.'},
+ {t:'r',i:1,ti:'Regenerativo',k:8,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'50 min',
+  det:['<b>Único bloco</b> 8 km a 6:05–6:35/km'],foco:'Sentir-se pesado nesta semana é o esperado, não um sinal de alerta.'},
+ {t:'r',i:1,ti:'Rodagem fácil',k:8,p:'5:20–5:45',fc:'132–148',R:4,h:'05:30',dur:'50 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 8 km a 5:20–5:45/km'],
+  foco:'Véspera do maior longão de qualidade do plano.'},
+ {t:'r',i:3,ti:'Longão · 8 km de limiar em blocos longos',k:20,p:'4:18 nos blocos',fc:'163–173 nos blocos',R:'4 → 7',h:'05:30',dur:'1h50',key:1,tp:258,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 5 km a 5:25/km',
+       '<b>Principal</b> 2× (4 km a 4:18/km / 1,5 km a 5:25/km)',
+       '<b>Volta à calma</b> 1,5 km a 5:30/km',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Leve carboidrato: 30 g aos 45 min e outros 30 g aos 80 min. Este é o equivalente estrutural ao seu 4×4 km de ritmo de maratona de 4 de julho.'},
+ {t:'x',ti:'Descanso total',foco:'66 km, o pico do plano. A partir daqui o volume só cai.'}]},
+
+{n:10,b:3,bl:'Descarga e teste',vol:38,fad:'Decrescente',
+ obj:'Absorver o bloco de desenvolvimento e recalibrar todos os ritmos a partir de um teste de 5 km.',d:[
+ {t:'x',ti:'Descanso total',foco:'Semana de teste. Tudo aqui existe para o sábado sair limpo.'},
+ {t:'r',i:1,ti:'Rodagem fácil',k:11,p:'5:20–5:45',fc:'132–148',R:4,h:'05:30',dur:'1h',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 11 km a 5:20–5:45/km'],
+  foco:'Última rodagem longa antes do teste. Volume normal, esforço mínimo.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:10,p:'5:20–5:45',fc:'132–148',R:4,h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 9 km a 5:20–5:45/km','<b>Strides</b> 6×20 s'],
+  foco:'Não há pista esta semana. Os strides mantêm o sistema desperto para sábado.'},
+ {t:'r',i:1,ti:'Regenerativo',k:7,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'45 min',
+  det:['<b>Único bloco</b> 7 km a 6:05–6:35/km'],foco:'Dois dias para o teste. Pernas leves é a única meta.'},
+ {t:'x',ti:'Descanso total',foco:'Véspera do teste. Jantar rico em carboidrato e dormir cedo.'},
+ {t:'r',i:4,ti:'Teste de 5 km · máximo',k:10,p:'3:45–3:49',fc:'máxima',R:10,h:'05:30',dur:'55 min',key:1,tt:1,
+  det:['<b>Aquecimento</b> 2,5 km de trote progressivo, educativos completos, 6×20 s strides e 5 min de repouso ativo',
+       '<b>Principal</b> 5 km em esforço máximo, pista ou percurso plano e medido',
+       '<b>Estratégia</b> quilômetro 1 dois a três segundos mais lento que o alvo, do 2 ao 4 no ritmo, o quinto com tudo que sobrar',
+       '<b>Desaquecimento</b> 2 km de trote muito leve'],
+  foco:'Marco decisivo. Entre 18:45 e 19:05 confirma os 38:00. Acima de 19:20, o alvo real passa a ser 39 e os blocos seguintes são reescritos. Registre o tempo no campo abaixo.'},
+ {t:'x',ti:'Descanso total',foco:'O número de ontem comanda as próximas cinco semanas.'}]},
+
+{n:11,b:4,bl:'Específico',vol:64,fad:'Moderada a alta',
+ obj:'Converter VO₂max e limiar em velocidade específica. Primeira exposição sistemática ao ritmo de prova de 3:48.',d:[
+ {t:'r',i:1,ti:'Rodagem curta',k:6,p:'5:30–5:55',fc:'132–145',R:3,h:'05:30',dur:'35 min',
+  det:['<b>Único bloco</b> 6 km leves a 5:30–5:55/km'],foco:'Bloco específico começa. Cada dia fácil protege os dois dias de ritmo de prova.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:11,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'1h05',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 10 km a 5:15–5:40/km','<b>Strides</b> 6×20 s'],
+  foco:'Véspera da primeira sessão no ritmo exato de prova.'},
+ {t:'r',i:4,ti:'Pista · 5×1000 m no ritmo de prova',k:12,p:'3:48',fc:'172–180',R:'8–9',h:'05:30',dur:'1h10',key:1,tp:228,
+  det:['<b>Aquecimento</b> 3 km progressivo, educativos completos e 6 strides',
+       '<b>Principal</b> 5×1000 m a 3:48/km',
+       '<b>Recuperação</b> 90 s de trote leve entre as repetições',
+       '<b>Desaquecimento</b> 2 km de trote'],
+  foco:'Cinco quilômetros no ritmo de prova, metade da distância. Se as duas últimas exigirem desaceleração, 38:00 está agressivo e ajustamos o alvo.'},
+ {t:'r',i:1,ti:'Regenerativo',k:8,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'50 min',
+  det:['<b>Único bloco</b> 8 km a 6:05–6:35/km'],foco:'O bloco específico cobra mais do sistema nervoso. Respeite a FC baixa.'},
+ {t:'r',i:2,ti:'Rodagem com 8 strides',k:9,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 8 km a 5:15–5:40/km','<b>Strides</b> 8×20 s'],
+  foco:'Véspera do longão com ritmo de prova embutido.'},
+ {t:'r',i:4,ti:'Longão · 6 km no ritmo de prova',k:18,p:'3:50 nos blocos',fc:'170–178 nos blocos',R:'4 → 8',h:'05:30',dur:'1h35',key:1,tp:230,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 5 km a 5:20/km',
+       '<b>Principal</b> 3× (2 km a 3:50/km / 1,5 km a 5:30/km)',
+       '<b>Volta à calma</b> 1 km a 5:30/km',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Ritmo de prova sobre fadiga acumulada. É a lógica canoviana do seu treinador aplicada aos dez quilômetros.'},
+ {t:'x',ti:'Descanso total',foco:'64 km. O ritmo de 3:48 entrou nas pernas.'}]},
+
+{n:12,b:4,bl:'Específico',vol:66,fad:'Alta',
+ obj:'Máximo volume em ritmo específico, com recuperações progressivamente mais curtas — a mesma progressão que o seu treinador usou na maratona.',d:[
+ {t:'r',i:1,ti:'Rodagem curta',k:6,p:'5:30–5:55',fc:'132–145',R:3,h:'05:30',dur:'35 min',
+  det:['<b>Único bloco</b> 6 km leves a 5:30–5:55/km'],foco:'Semana com o treino que melhor prediz o resultado da prova.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:11,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'1h05',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 10 km a 5:15–5:40/km','<b>Strides</b> 6×20 s'],
+  foco:'Véspera do 6×1000. Durma cedo, jante bem.'},
+ {t:'r',i:4,ti:'Pista · 6×1000 m com 75 s',k:13,p:'3:46',fc:'174–182',R:9,h:'05:30',dur:'1h15',key:1,tp:226,
+  det:['<b>Aquecimento</b> 3 km progressivo, educativos completos e 6 strides',
+       '<b>Principal</b> 6×1000 m a 3:46/km',
+       '<b>Recuperação</b> 75 s de trote entre as repetições',
+       '<b>Desaquecimento</b> 2 km de trote'],
+  foco:'Este é o melhor preditor do resultado em novembro. Se completar as seis sem deriva de ritmo, 38:00 está ao alcance.'},
+ {t:'r',i:1,ti:'Regenerativo',k:8,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'50 min',
+  det:['<b>Único bloco</b> 8 km a 6:05–6:35/km'],foco:'Semana de carga alta. Este dia não é negociável.'},
+ {t:'r',i:2,ti:'Fartlek 4 por 2',k:9,p:'RPE 7 nos fortes',fc:'160–172 nos fortes',R:'6–7',h:'05:30',dur:'50 min',
+  det:['<b>Aquecimento</b> 2 km','<b>Principal</b> 6 km alternando 4 min a RPE 7 e 2 min fácil','<b>Desaquecimento</b> 1 km de trote'],
+  foco:'Blocos mais longos que nas semanas anteriores, ainda autorregulados pela sensação.'},
+ {t:'r',i:4,ti:'Longão · blocos longos de ritmo',k:19,p:'3:50 nos blocos',fc:'170–178 nos blocos',R:'4 → 8',h:'05:30',dur:'1h40',key:1,tp:230,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 5 km a 5:20/km',
+       '<b>Principal</b> 2× (3 km a 3:50/km / 2 km a 5:30/km)',
+       '<b>Volta à calma</b> 1 km a 5:30/km',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Blocos de 3 km treinam sustentação, não apenas familiarização com o ritmo.'},
+ {t:'x',ti:'Descanso total',foco:'66 km, empatando com o pico. Última semana pesada é a próxima.'}]},
+
+{n:13,b:4,bl:'Específico',vol:58,fad:'Alta, com afiação aparecendo',
+ obj:'Última semana de carga, encerrada com uma simulação parcial de prova.',d:[
+ {t:'r',i:1,ti:'Rodagem curta',k:6,p:'5:30–5:55',fc:'132–145',R:3,h:'05:30',dur:'35 min',
+  det:['<b>Único bloco</b> 6 km leves a 5:30–5:55/km'],foco:'Última semana dura. Depois disso, só se corta.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:10,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'1h',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 9 km a 5:15–5:40/km','<b>Strides</b> 6×20 s'],
+  foco:'Volume começa a ceder. Sensação de leveza deve aparecer.'},
+ {t:'r',i:4,ti:'Pista · 3×2000 m e 4×300 m',k:12.5,p:'3:50 e 3:30',fc:'172–180 e máxima',R:9,h:'05:30',dur:'1h15',key:1,tp:230,
+  det:['<b>Aquecimento</b> 3 km progressivo, educativos completos e 6 strides',
+       '<b>Bloco A</b> 3×2000 m a 3:50/km, recuperação de 2 min em trote',
+       '<b>Bloco B</b> 4×300 m a 3:30/km, recuperação de 90 s',
+       '<b>Desaquecimento</b> 2 km de trote'],
+  foco:'Os 300 m finais melhoram a economia por contraste. Depois de correr a 3:30, o ritmo de 3:48 passa a parecer confortável.'},
+ {t:'r',i:1,ti:'Regenerativo',k:7,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'45 min',
+  det:['<b>Único bloco</b> 7 km a 6:05–6:35/km'],foco:'Dois dias para a simulação. Recuperar é o treino.'},
+ {t:'r',i:2,ti:'Rodagem com 8 strides',k:8,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'50 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 7 km a 5:15–5:40/km','<b>Strides</b> 8×20 s'],
+  foco:'Véspera do último treino verdadeiramente duro do plano.'},
+ {t:'r',i:4,ti:'Longão · simulação parcial de prova',k:17,p:'3:52 e 3:48',fc:'170–180',R:'4 → 8',h:'05:30',dur:'1h30',key:1,tp:232,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 4 km a 5:20/km',
+       '<b>Bloco A</b> 5 km contínuos a 3:52/km',
+       '<b>Intervalo</b> 2 km a 5:30/km',
+       '<b>Bloco B</b> 2 km a 3:48/km',
+       '<b>Desaquecimento</b> 1 km de trote e 800 m de caminhada'],
+  foco:'Os 5 km testam sustentação; os 2 km finais testam acelerar em fadiga, que é a demanda exata dos quilômetros 8 a 10. Se este treino sair bem, você está pronto.'},
+ {t:'x',ti:'Descanso total',foco:'Última semana de carga encerrada. Agora só se afia.'}]},
+
+{n:14,b:5,bl:'Polimento',vol:44,fad:'Decrescente',
+ obj:'Dissipar a fadiga acumulada preservando intensidade e frequência. O volume cai 28%, a velocidade fica intacta.',d:[
+ {t:'x',ti:'Descanso total',foco:'Início do taper. Menos volume, mesma velocidade.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:9,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'55 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada e educativos','<b>Principal</b> 8 km a 5:15–5:40/km','<b>Strides</b> 6×20 s'],
+  foco:'A sensação de sobra é o sinal de que o taper está funcionando. Não a desperdice acelerando.'},
+ {t:'r',i:4,ti:'Pista · 4×1000 m com recuperação ampliada',k:10,p:'3:46',fc:'174–182',R:8,h:'05:30',dur:'1h',key:1,tp:226,
+  det:['<b>Aquecimento</b> 3 km progressivo, educativos e 6 strides',
+       '<b>Principal</b> 4×1000 m a 3:46/km',
+       '<b>Recuperação</b> 2:30 em trote, ampliada de propósito',
+       '<b>Desaquecimento</b> 2 km de trote'],
+  foco:'Volume um terço menor, recuperação ampliada, ritmo intacto. Deve terminar sentindo que faria mais duas repetições.'},
+ {t:'r',i:1,ti:'Regenerativo',k:6,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'40 min',
+  det:['<b>Único bloco</b> 6 km a 6:05–6:35/km'],foco:'Curto. Duas semanas para a prova.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:7,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'45 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 6 km a 5:15–5:40/km','<b>Strides</b> 6×20 s'],
+  foco:'Véspera do último longão com ritmo de prova.'},
+ {t:'r',i:4,ti:'Longão curto no ritmo de prova',k:12,p:'3:48 nos blocos',fc:'170–178 nos blocos',R:'4 → 7',h:'05:30',dur:'1h05',key:1,tp:228,
+  det:['<b>Aquecimento</b> 1 km de caminhada e 4 km a 5:20/km',
+       '<b>Principal</b> 3× (1,5 km a 3:48/km / 1 km a 5:30/km)',
+       '<b>Desaquecimento</b> 800 m de caminhada'],
+  foco:'Último contato com ritmo de prova em volume. Se parecer fácil, o taper está exatamente no ponto.'},
+ {t:'x',ti:'Descanso total',foco:'44 km. Sete dias para a prova.'}]},
+
+{n:15,b:5,bl:'Semana de prova',vol:34,fad:'Mínima',
+ obj:'Supercompensação total. Estrutura inspirada no taper que o seu treinador aplicou antes da maratona: poucas sessões, curtas, com intensidade preservada.',d:[
+ {t:'x',ti:'Descanso total',foco:'Seis dias. Nada que você faça agora aumenta a forma; muita coisa pode reduzi-la.'},
+ {t:'r',i:2,ti:'Rodagem com 6 strides',k:8,p:'5:15–5:40',fc:'132–148',R:4,h:'05:30',dur:'50 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 7 km a 5:15–5:40/km','<b>Strides</b> 6×20 s'],
+  foco:'Manter a frequência e a sensação de corrida. Nada além disso.'},
+ {t:'r',i:3,ti:'Afiação · 6×400 m',k:7,p:'3:38',fc:'170–180',R:'7–8',h:'05:30',dur:'45 min',key:1,tp:218,
+  det:['<b>Aquecimento</b> 2,5 km de trote, educativos e 4 strides',
+       '<b>Principal</b> 6×400 m a 3:38/km',
+       '<b>Recuperação</b> 2 min entre as repetições',
+       '<b>Desaquecimento</b> 1,5 km de trote'],
+  foco:'Deve ser divertido. Se doer, você foi rápido demais e comprometeu domingo.'},
+ {t:'r',i:1,ti:'Regenerativo',k:5,p:'6:05–6:35',fc:'abaixo de 132',R:3,h:'05:30',dur:'35 min',
+  det:['<b>Único bloco</b> 5 km a 6:05–6:35/km'],foco:'Três dias. Pernas soltas, cabeça calma.'},
+ {t:'x',ti:'Descanso total',foco:'Separe o kit hoje: tênis, roupa, número, gel, garrafa. Reduza tempo em pé.'},
+ {t:'r',i:1,ti:'Ativação pré-prova',k:4,p:'5:30',fc:'132–145',R:'3–4',h:'05:30',dur:'30 min',
+  det:['<b>Aquecimento</b> 5 min de caminhada','<b>Principal</b> 3 km a 5:30/km','<b>Strides</b> 4×20 s','<b>Desaquecimento</b> 5 min de caminhada'],
+  foco:'Faça no mesmo horário da prova. Serve para manter o sistema desperto e baixar a ansiedade.'},
+ {t:'r',i:4,ti:'Prova · 10 km',k:10,p:'3:48',fc:'176–186',R:10,h:'—',dur:'38 min',key:1,race:1,
+  det:['<b>Aquecimento</b> 10 min de trote leve, educativos e 4×20 s strides, terminando 15 min antes da largada',
+       '<b>Quilômetro 1</b> 3:52 — deliberadamente conservador',
+       '<b>Quilômetros 2 e 3</b> 3:48, assumir o ritmo',
+       '<b>Quilômetros 4 a 6</b> 3:46 a 3:48, fase de disciplina mental',
+       '<b>Quilômetros 7 e 8</b> o trecho que decide a prova: aumente a cadência e encurte a passada',
+       '<b>Quilômetro 9</b> 3:44, comece a entregar',
+       '<b>Quilômetro 10</b> tudo o que sobrou'],
+  foco:'Sair 8 s/km rápido no primeiro quilômetro custa tipicamente de 15 a 25 s no tempo final. O primeiro quilômetro é o único que você controla por completo.'}]}
+];
+
+/* ===== ESTADO ===== */
+const KEY='rb38:v4';
+let S={logs:{}}, cur=1;
+function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);S.logs=o.logs||{};}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+const pad=n=>String(n).padStart(2,'0');
+const dateOf=(w,d)=>{const x=new Date(START);x.setDate(x.getDate()+(w-1)*7+d);return x;};
+const fdate=x=>pad(x.getDate())+'.'+pad(x.getMonth()+1);
+const sec2t=s=>{s=Math.round(s);return Math.floor(s/60)+':'+pad(s%60);};
+const p2s=v=>{if(!v)return null;const m=String(v).trim().match(/^(\d{1,2})[:.,](\d{2})$/);return m?(+m[1])*60+(+m[2]):null;};
+function todayWeek(){const d=Math.floor((new Date()-START)/864e5);return d<0?1:Math.min(15,Math.floor(d/7)+1);}
+function todayIdx(){const d=Math.floor((new Date()-START)/864e5);return d<0?0:Math.min(6,d%7);}
+function beforeStart(){return new Date()<START;}
+
+/* ===== PROJEÇÃO ===== */
+const BASE=2520,GOAL=2280,MAXGAIN=240;
+const CURVE=[0,0,.05,.11,.18,.21,.31,.42,.52,.57,.70,.82,.91,.965,1];
+function project(){
+  const now=todayWeek();let due=0,dn=0,lg=0,es=0,en=0,tt=null,km=0;
+  P.forEach(w=>w.d.forEach((d,i)=>{
+    const L=S.logs[w.n+'-'+i];
+    if(L&&L.done){lg++;const v=parseFloat(String(L.km||'').replace(',','.'));if(v>0)km+=v;}
+    if(L&&L.tt){const v=p2s(L.tt);if(v)tt=v;}
+    if(d.t!=='r'||d.race)return;
+    const wt=d.key?2:1;
+    if(w.n<=now)due+=wt;
+    if(L&&L.done){if(w.n<=now)dn+=wt;
+      if(d.tp&&L.pace){const p=p2s(L.pace);if(p){es+=(d.tp-p);en++;}}}
+  }));
+  const adh=due?Math.min(1,dn/due):0,cv=CURVE[Math.min(14,now-1)];
+  let t,why=[];
+  if(tt){const nb=tt*Math.pow(2,1.06),rem=(cv-CURVE[9])/(1-CURVE[9]);
+    t=nb-Math.max(0,nb-GOAL)*.45*Math.max(0,rem)*adh;
+    why.push('O teste de 5 km em '+sec2t(tt)+' recalibrou a base.');
+  }else t=BASE-MAXGAIN*cv*adh;
+  if(en){const a=es/en,mod=Math.max(-40,Math.min(50,-a*3.4));t+=mod;
+    why.push(a>1.5?'Os ritmos executados vieram acima do prescrito.':(a<-1.5?'Os ritmos executados vieram abaixo do prescrito.':'Os ritmos estão em linha com o prescrito.'));}
+  if(due)why.unshift('Adesão às sessões-chave em '+Math.round(adh*100)+'%.');
+  if(!lg)why=['Ponto de partida: VDOT 49, equivalente a 42:00 nos 10 km. Registre os treinos e a projeção se ajusta.'];
+  return{t:Math.max(2040,t),conf:Math.min(95,18+lg*3.4),logged:lg,km,why:why.join(' ')};
+}
+
+/* ===== NAVEGAÇÃO ===== */
+function revealIn(el){el.querySelectorAll('.rv').forEach(x=>{x.style.transitionDelay='0ms';x.classList.add('in');});}
+function goTo(id){
+  const el=document.getElementById(id);if(!el)return;
+  revealIn(el);
+  const nav=window.innerWidth>=768?(document.querySelector('.topnav').offsetHeight||0):0;
+  window.scrollTo({top:Math.max(0,el.getBoundingClientRect().top+window.pageYOffset-nav-6),behavior:'smooth'});
+}
+const SEC=['hoje','semana','projecao'];
+function spy(){
+  const y=window.pageYOffset+window.innerHeight*0.33;let act=SEC[0];
+  SEC.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=y)act=id;});
+  document.querySelectorAll('.tabbar button,.topnav a').forEach(a=>a.classList.toggle('act',a.dataset.to===act));
+}
+
+/* ===== ANIMAÇÃO DO RAIO ===== */
+function zap(){
+  const el=document.getElementById('zap');
+  el.querySelectorAll('.zray').forEach(r=>r.remove());
+  for(let i=0;i<14;i++){
+    const r=document.createElement('div');r.className='zray';
+    r.style.setProperty('--a',(i*(360/14))+'deg');
+    r.style.setProperty('--d',(120+Math.random()*140)+'px');
+    r.style.animationDelay=(0.12+Math.random()*0.18)+'s';
+    r.style.height=(90+Math.random()*110)+'px';
+    el.appendChild(r);
+  }
+  el.classList.add('on');
+  try{if(navigator.vibrate)navigator.vibrate([15,40,90]);}catch(e){}
+  setTimeout(()=>{el.classList.remove('on');el.querySelectorAll('.zray').forEach(r=>r.remove());},1650);
+}
+
+/* ===== HOJE ===== */
+function rToday(){
+  document.getElementById('cd').textContent=Math.max(0,Math.ceil((RACE-new Date())/864e5))+' DIAS PARA A PROVA';
+  const w=todayWeek(),i=todayIdx(),d=P[w-1].d[i],id=w+'-'+i,L=S.logs[id]||{};
+  const dt=beforeStart()?START:new Date();
+  document.getElementById('todayDate').textContent=
+    DOW[beforeStart()?0:i]+', '+pad(dt.getDate())+'.'+pad(dt.getMonth()+1)+' · Semana '+w+' · '+P[w-1].bl;
+  const rest=d.t==='x';
+  let tag='<span class="tag'+(rest?' rest':(d.key?' hard':''))+'">'+
+    (rest?'DESCANSO':(d.key?'SESSÃO-CHAVE':'RODAGEM'))+'</span>';
+  let nums='';
+  if(!rest){
+    nums='<div class="tnums">'+
+      '<div class="tnum"><b class="num">'+(d.k||'—')+'</b><span>km</span></div>'+
+      '<div class="tnum"><b class="num" style="font-size:15px;padding:2px 0">'+(d.p||'—')+'</b><span>ritmo</span></div>'+
+      '<div class="tnum"><b class="num">'+(d.dur||'—')+'</b><span>duração</span></div></div>';
+  }
+  document.getElementById('todayCard').innerHTML=
+    tag+'<h3>'+d.ti+'</h3>'+
+    '<div class="when">'+(rest?'Sem corrida hoje':(d.h&&d.h!=='—'?'Saída às '+d.h+' · RPE '+d.R+' · FC '+d.fc:'Dia de prova'))+'</div>'+
+    nums+
+    '<div class="focus"><div class="fk">A INSTRUÇÃO DE HOJE</div><div class="fv">'+(d.foco||'')+'</div></div>'+
+    (rest?'':'<button class="btn'+(L.done?' done':'')+'" id="goWeek">'+(L.done?'✓ Treino registrado':'Ver o treino completo')+'</button>');
+  const b=document.getElementById('goWeek');
+  if(b)b.onclick=()=>{cur=w;rWeeks();rHead();rDays();goTo('semana');
+    setTimeout(()=>{const c=document.getElementById('c-'+id);
+      if(c&&!c.classList.contains('open')){c.classList.add('open');
+        c.scrollIntoView({behavior:'smooth',block:'center'});}},420);};
+}
+
+/* ===== SEMANA ===== */
+function rWeeks(){
+  const mx=Math.max(...P.map(w=>w.vol));
+  document.getElementById('weeks').innerHTML=P.map(w=>{
+    const done=w.d.every((d,i)=>d.t==='x'||(S.logs[w.n+'-'+i]&&S.logs[w.n+'-'+i].done));
+    return '<button class="wbtn '+(w.n===cur?'on':'')+' '+(done?'dn':'')+'" data-w="'+w.n+'" aria-label="Semana '+w.n+'">'+
+      '<span class="bar" style="height:'+Math.round(11+(w.vol/mx)*50)+'px"></span><span class="n num">'+w.n+'</span></button>';
+  }).join('');
+  document.querySelectorAll('.wbtn').forEach(b=>b.onclick=()=>{cur=+b.dataset.w;rWeeks();rHead();rDays();goTo('semana');});
+}
+function rHead(){
+  const w=P[cur-1];
+  const runs=w.d.filter(d=>d.t==='r').length;
+  const done=w.d.filter((d,i)=>d.t==='r'&&S.logs[w.n+'-'+i]&&S.logs[w.n+'-'+i].done).length;
+  document.getElementById('whead').innerHTML=
+    '<div class="eye">'+w.bl.toUpperCase()+' · '+fdate(dateOf(cur,0))+' – '+fdate(dateOf(cur,6))+'</div>'+
+    '<h3>Semana '+w.n+'</h3><p class="small">'+w.obj+'</p><div class="wstats">'+
+    '<div class="wstat"><div class="v num">'+w.vol+'</div><div class="k">km na semana</div></div>'+
+    '<div class="wstat"><div class="v num">'+done+'/'+runs+'</div><div class="k">corridas feitas</div></div>'+
+    '<div class="wstat"><div class="v num">'+w.d.filter(d=>d.key).length+'</div><div class="k">sessões-chave</div></div>'+
+    '<div class="wstat" style="flex:1 1 100%"><div class="v" style="font-size:15px;font-weight:500">'+w.fad+'</div><div class="k">fadiga esperada</div></div></div>';
+}
+function rDays(){
+  const w=P[cur-1],tw=todayWeek(),ti=todayIdx();
+  document.getElementById('days').innerHTML=w.d.map((d,i)=>{
+    const id=w.n+'-'+i,L=S.logs[id]||{},rest=d.t==='x';
+    const isToday=(w.n===tw&&i===ti&&!beforeStart());
+    const meta=[];
+    if(d.k)meta.push('<i class="num">'+d.k+' km</i>');
+    if(d.p)meta.push('<i class="num">'+d.p+'</i>');
+    if(d.R)meta.push('<i>RPE '+d.R+'</i>');
+    if(d.dur)meta.push('<i class="num">'+d.dur+'</i>');
+    if(d.fc)meta.push('<i class="num">FC '+d.fc+'</i>');
+    return '<div class="card rv '+(L.done?'done ':'')+(isToday?'today':'')+'" id="c-'+id+'">'+
+      '<button class="chd" aria-expanded="false">'+
+        '<span class="r1"><span class="dw">'+DOW[i]+(isToday?' · hoje':'')+'</span>'+
+        '<span class="dt num">'+fdate(dateOf(cur,i))+'</span><span class="sp"></span>'+
+        (d.h&&d.h!=='—'?'<span class="hr num">'+d.h+'</span>':'')+'</span>'+
+        '<span class="tt">'+d.ti+'</span>'+
+        (meta.length?'<span class="mt">'+meta.join('')+'</span>':'')+
+        '<span class="r3">'+(rest?'':'<span class="dot i'+(d.i||0)+'"></span>')+'<span class="chev"></span></span>'+
+      '</button>'+
+      '<div class="cbd"><div class="cin">'+
+        (d.det?'<ul class="steps">'+d.det.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'')+
+        (d.foco?'<div class="tip"><b>Foco.</b> '+d.foco+'</div>':'')+
+        (rest?'':'<div class="form"><div class="fl">REGISTRO DO TREINO</div><div class="grid2">'+
+          '<label class="f"><span>Distância</span><input type="text" data-f="km" data-id="'+id+'" value="'+(L.km||'')+'" placeholder="'+(d.k||'')+'"></label>'+
+          '<label class="f"><span>Pace médio</span><input type="text" data-f="pace" data-id="'+id+'" value="'+(L.pace||'')+'" placeholder="4:18"></label>'+
+          '<label class="f"><span>FC média</span><input type="text" data-f="hr" data-id="'+id+'" value="'+(L.hr||'')+'" placeholder="bpm"></label>'+
+          '<label class="f"><span>Altimetria</span><input type="text" data-f="alt" data-id="'+id+'" value="'+(L.alt||'')+'" placeholder="m"></label>'+
+          (d.tt?'<label class="f" style="grid-column:1/-1"><span>Tempo dos 5 km</span><input type="text" data-f="tt" data-id="'+id+'" value="'+(L.tt||'')+'" placeholder="18:50"></label>':'')+
+        '</div><div class="fbtns"><button class="mini p" data-save="'+id+'">'+(L.done?'Atualizar':'Marcar como feito')+'</button>'+
+        (L.done?'<button class="mini s" data-clear="'+id+'">Desmarcar</button>':'')+
+        '<span class="ok" id="ok-'+id+'">Salvo</span></div></div>')+
+      '</div></div></div>';
+  }).join('');
+  document.querySelectorAll('.chd').forEach(b=>b.onclick=()=>{
+    const c=b.parentElement,o=c.classList.toggle('open');b.setAttribute('aria-expanded',o);});
+  document.querySelectorAll('[data-save]').forEach(b=>b.onclick=()=>doSave(b.dataset.save));
+  document.querySelectorAll('[data-clear]').forEach(b=>b.onclick=()=>doClear(b.dataset.clear));
+  observe();
+}
+function doSave(id){
+  const o=S.logs[id]||{},was=!!o.done;
+  document.querySelectorAll('[data-id="'+id+'"][data-f]').forEach(e=>o[e.dataset.f]=e.value.trim());
+  o.done=true;S.logs[id]=o;save();
+  document.getElementById('c-'+id).classList.add('done');
+  const k=document.getElementById('ok-'+id);if(k){k.classList.add('on');setTimeout(()=>k.classList.remove('on'),1800);}
+  const b=document.querySelector('[data-save="'+id+'"]');if(b)b.textContent='Atualizar';
+  rWeeks();rHead();rProj();rToday();rStats();
+  if(!was)zap();
+}
+function doClear(id){
+  delete S.logs[id];save();
+  const open=document.getElementById('c-'+id).classList.contains('open');
+  rDays();rWeeks();rHead();rProj();rToday();rStats();
+  if(open)document.getElementById('c-'+id).classList.add('open');
+}
+
+/* ===== PROJEÇÃO ===== */
+function rProj(){
+  const r=project();
+  document.getElementById('pT').textContent=sec2t(r.t);
+  document.getElementById('pP').textContent=sec2t(r.t/10)+' por quilômetro';
+  document.getElementById('cN').textContent=Math.round(r.conf)+'%';
+  document.getElementById('cF').style.width=r.conf+'%';
+  document.getElementById('pW').textContent=r.why;
+}
+function rStats(){
+  const r=project();
+  document.getElementById('dsT').textContent=r.logged;
+  document.getElementById('dsK').textContent=Math.round(r.km);
+  document.getElementById('dsS').textContent=todayWeek();
+}
+function flashOk(id){const e=document.getElementById(id);e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1900);}
+
+/* ===== REVEAL ===== */
+let io;
+function observe(){
+  if(!io)io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),
+    {threshold:.05,rootMargin:'0px 0px -3%'});
+  document.querySelectorAll('.rv:not(.in)').forEach((el,i)=>{el.style.transitionDelay=Math.min(i*35,180)+'ms';io.observe(el);});
+}
+
+/* ===== INIT ===== */
+(function(){
+  load();cur=todayWeek();
+  rToday();rWeeks();rHead();rDays();rProj();rStats();observe();spy();
+  document.querySelectorAll('[data-to]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();goTo(el.dataset.to);}));
+  addEventListener('scroll',spy,{passive:true});
+  document.getElementById('zap').onclick=function(){this.classList.remove('on');};
+
+  document.getElementById('btnExp').onclick=()=>{
+    const j=JSON.stringify(S,null,2);
+    const dl=t=>{const a=document.createElement('a');
+      a.href='data:application/json;charset=utf-8,'+encodeURIComponent(t);
+      a.download='38min-backup.json';a.click();flashOk('dOk');};
+    if(navigator.clipboard&&navigator.clipboard.writeText)
+      navigator.clipboard.writeText(j).then(()=>flashOk('dOk')).catch(()=>dl(j));
+    else dl(j);
+  };
+  document.getElementById('btnImp').onclick=()=>{
+    const el=document.getElementById('imp');el.style.display=el.style.display==='block'?'none':'block';};
+  document.getElementById('btnImpOk').onclick=()=>{
+    try{const o=JSON.parse(document.getElementById('impJson').value.trim());
+      if(typeof o!=='object'||Array.isArray(o))throw 0;
+      S.logs=o.logs||{};save();
+      document.getElementById('imp').style.display='none';
+      document.getElementById('impJson').value='';
+      rToday();rWeeks();rHead();rDays();rProj();rStats();flashOk('dOk');
+    }catch(e){alert('JSON inválido. Confira o conteúdo e tente de novo.');}
+  };
+  document.getElementById('btnDel').onclick=()=>{
+    if(!confirm('Apagar todos os registros? Não dá para desfazer.'))return;
+    S={logs:{}};save();rToday();rWeeks();rHead();rDays();rProj();rStats();flashOk('dOk');
+  };
+})();
+</script>
+</html>
